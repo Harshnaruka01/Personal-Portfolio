@@ -47,92 +47,54 @@ const Resume = () => {
     },
   ];
 
-  const experience = [
-    {
-      position: "Freelance Developer",
-      company: "Self-employed",
-      duration: "January 2023 - Present",
-      description: "Working as a freelance developer on various projects, specializing in web development and AI solutions.",
-      responsibilities: [
-        "Developed full-stack web applications for clients using React, Node.js, and MongoDB",
-        "Created AI-powered solutions for data analysis and automation",
-        "Managed project timelines and client communication",
-        "Integrated AI tools into development workflows for improved efficiency"
-      ]
-    },
-    {
-      position: "Web Developer Intern",
-      company: "SkillCraft Technologies",
-      duration: "November 2024 - December 2024",
-      description: "Developed and maintained web applications using React.js and Node.js. Collaborated with senior developers to implement new features and fix bugs.",
-      responsibilities: [
-        "Developed responsive front-end interfaces using React.js",
-        "Implemented RESTful APIs using Node.js and Express",
-        "Participated in code reviews and team meetings",
-        "Optimized applications for maximum speed and scalability"
-      ]
-    },
-    {
-      position: "Open Source Contributor",
-      company: "GitHub Community",
-      duration: "January 2022 - Present",
-      description: "Actively contributed to various open-source projects, focusing on web development and machine learning libraries.",
-      responsibilities: [
-        "Fixed bugs and implemented new features in popular repositories",
-        "Collaborated with developers worldwide through pull requests",
-        "Improved documentation for better user experience",
-        "Participated in code reviews and discussions"
-      ]
-    },
-  ];
 
   const projects = [
     {
-      title: "Income Tax Fraud Detection",
-      description: "Developed an AI-powered system to detect fraudulent activities in income tax filings using machine learning algorithms and data pattern analysis.",
-      technologies: ["Python", "Machine Learning", "AI", "Data Analysis", "TensorFlow"],
-      duration: "03/2023 - 04/2023",
-      type: "Open-source",
+      title: "multilabel-Classification-using-CNN-on-X-rays",
+      description: "This project uses a CNN model to perform multilabel classification on chest X-rays, detecting multiple diseases simultaneously and assisting doctors with faster, more accurate diagnosis and early disease detection.",
+      technologies: ["Python", "Machine Learning", "Neural Networks", "TensorFlow"],
+      duration: "2024",
+      type: "AI/ML Project",
       accomplishments: [
-        "Created custom algorithms to identify suspicious patterns in tax filings",
-        "Implemented a dashboard to visualize fraud detection metrics",
-        "Achieved 92% accuracy in identifying fraudulent transactions"
+        "Implemented CNN architecture for multilabel disease classification",
+        "Achieved high accuracy in detecting multiple chest conditions",
+        "Created user-friendly interface for medical professionals"
       ]
     },
     {
-      title: "Oral Cancer Detection",
-      description: "Built a deep learning model to detect and classify oral cancer stages from medical images, helping in early diagnosis and treatment planning.",
-      technologies: ["Python", "TensorFlow", "Neural Networks", "Computer Vision", "OpenCV"],
-      duration: "05/2023 - 08/2023",
-      type: "2nd Year Project",
+      title: "AI-ChatBot",
+      description: "This project is an AI chatbot that uses Natural Language Processing (NLP) to understand user queries and provide relevant responses. It enables human-computer interaction through a conversational interface.",
+      technologies: ["Python", "TensorFlow", "AI", "NLP"],
+      duration: "2024",
+      type: "AI Project",
       accomplishments: [
-        "Conducted data collection and preprocessing for oral cancer detection",
-        "Designed and implemented a machine learning model for image classification using CNNs",
-        "Achieved 89% accuracy in detecting early-stage oral cancer"
+        "Developed NLP-based conversational interface",
+        "Implemented context-aware response generation",
+        "Created automated query handling system"
       ]
     },
     {
-      title: "Object Tracking using OpenCV",
-      description: "Developed an object detection and tracking system using OpenCV and KCF Tracker that can identify and follow objects in video streams.",
-      technologies: ["Python", "OpenCV", "Computer Vision", "AI"],
-      duration: "03/2023 - 04/2023",
-      type: "Open-source",
+      title: "FReakX",
+      description: "A full-stack e-commerce platform with user authentication, product catalog, and payment processing.",
+      technologies: ["JavaScript", "Node.js", "React", "MongoDB"],
+      duration: "2024",
+      type: "Web Development",
       accomplishments: [
-        "Developed an open-source AI project for object detection using encoded data",
-        "Utilized compatible video sources to recognize objects seen through a camera",
-        "Implemented real-time tracking with minimal latency"
+        "Built complete e-commerce platform with authentication",
+        "Implemented secure payment processing system",
+        "Created responsive product catalog and shopping cart"
       ]
     },
     {
-      title: "Credit Card Fraud Detection",
-      description: "Created a machine learning model to analyze whether credit card transactions are fraudulent by identifying unusual patterns and anomalies.",
-      technologies: ["Python", "Machine Learning", "Data Science", "Statistical Analysis"],
-      duration: "01/2023 - 03/2023",
-      type: "Personal Project",
+      title: "customer_churn_prediction",
+      description: "This project uses machine learning to predict customer churn by analyzing user behavior and service data, helping businesses identify at-risk customers and improve retention.",
+      technologies: ["Python", "Machine Learning", "Data Science"],
+      duration: "2024",
+      type: "Data Science Project",
       accomplishments: [
-        "Trained models on large datasets of transaction data",
-        "Implemented feature engineering to improve detection accuracy",
-        "Developed a real-time alert system for suspicious transactions"
+        "Developed predictive models for customer retention",
+        "Implemented data analysis pipeline for churn prediction",
+        "Created visualization dashboard for business insights"
       ]
     },
     {
@@ -354,53 +316,6 @@ const Resume = () => {
         ))}
       </motion.div>
     ),
-    experience: (
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4 }}
-        className="space-y-6"
-      >
-        {experience.map((exp, index) => (
-          <motion.div
-            key={exp.position}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: index * 0.1 }}
-            className="glass-panel p-6 rounded-lg"
-          >
-            <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-2 mb-4">
-              <div className="flex-1">
-                <div className="flex items-start">
-                  <div className="bg-brand-purple/10 p-2 rounded-full mr-4 hidden md:block">
-                    <Briefcase className="h-6 w-6 text-brand-purple" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold">{exp.position}</h3>
-                    <div className="text-lg mt-1">{exp.company}</div>
-                  </div>
-                </div>
-              </div>
-              <div className="text-sm text-muted-foreground md:text-right">
-                {exp.duration}
-              </div>
-            </div>
-            <p className="text-muted-foreground mb-4 pl-0 md:pl-12">{exp.description}</p>
-            <div className="pl-0 md:pl-12">
-              <h4 className="font-medium mb-2">Key Responsibilities:</h4>
-              <ul className="space-y-2">
-                {exp.responsibilities.map((resp, i) => (
-                  <li key={i} className="flex items-start">
-                    <CheckCircle2 className="h-5 w-5 text-brand-purple mr-2 flex-shrink-0 mt-0.5" />
-                    <span className="text-muted-foreground">{resp}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </motion.div>
-        ))}
-      </motion.div>
-    ),
     projects: (
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -539,7 +454,6 @@ const Resume = () => {
               {[
                 { id: "skills", icon: <Code className="h-5 w-5" />, label: "Skills" },
                 { id: "education", icon: <GraduationCap className="h-5 w-5" />, label: "Education" },
-                { id: "experience", icon: <Briefcase className="h-5 w-5" />, label: "Experience" },
                 { id: "projects", icon: <Code className="h-5 w-5" />, label: "Projects" },
                 { id: "certifications", icon: <Award className="h-5 w-5" />, label: "Certifications" },
               ].map((tab) => (
