@@ -69,10 +69,14 @@ const ContactForm = () => {
         setIsSubmitted(false);
       }, 3000);
       
-    } catch (error: any) {
+    } catch (error) {
+      const errorMessage = error instanceof Error
+        ? error.message
+        : "An unexpected error occurred. Please try again.";
+
       toast({
         title: "Failed to send message",
-        description: error.message || "An unexpected error occurred. Please try again.",
+        description: errorMessage,
         variant: "destructive",
       });
     } finally {

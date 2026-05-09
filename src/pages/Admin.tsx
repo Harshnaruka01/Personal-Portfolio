@@ -10,6 +10,14 @@ import { CheckCircle, Eye, EyeOff, Clock } from "lucide-react";
 import { ContactMessage } from "@/services/contactService";
 import { useContactMessages } from "@/hooks/useFirebase";
 
+const getErrorMessage = (error: unknown): string => {
+  if (error instanceof Error) {
+    return error.message;
+  }
+
+  return "Something went wrong.";
+};
+
 const Admin = () => {
   const [selectedMessage, setSelectedMessage] = useState<ContactMessage | null>(null);
   const { toast } = useToast();
@@ -34,10 +42,10 @@ const Admin = () => {
         title: message.is_read ? "Marked as unread" : "Marked as read",
         variant: "default",
       });
-    } catch (err: any) {
+    } catch (err) {
       toast({
         title: "Error updating message",
-        description: err.message,
+        description: getErrorMessage(err),
         variant: "destructive",
       });
     }

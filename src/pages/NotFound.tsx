@@ -1,20 +1,17 @@
 
 import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Home, ArrowLeft, Info } from "lucide-react";
 import { HoverCard, HoverCardTrigger, HoverCardContent } from "@/components/ui/hover-card";
 
+type NotFoundLocationState = {
+  from?: string;
+};
+
 const NotFound = () => {
   const location = useLocation();
-
-  useEffect(() => {
-    console.error(
-      "404 Error: User attempted to access non-existent route:",
-      location.pathname
-    );
-  }, [location.pathname]);
+  const locationState = (location.state as NotFoundLocationState | null) ?? null;
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-brand-dark p-4">
@@ -53,7 +50,7 @@ const NotFound = () => {
               whileTap={{ scale: 0.95 }}
             >
               <Link
-                to={(location.state as any)?.from || "/"}
+                to={locationState?.from || "/"}
                 className="inline-flex items-center bg-secondary text-foreground px-6 py-3 rounded-lg font-medium hover:bg-opacity-90 transition-all"
               >
                 <ArrowLeft className="mr-2 h-5 w-5" />

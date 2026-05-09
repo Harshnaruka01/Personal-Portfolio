@@ -2,6 +2,14 @@
 import { useState, useEffect } from 'react';
 import { contactService, ContactMessage } from '@/services/contactService';
 
+const getErrorMessage = (error: unknown): string => {
+  if (error instanceof Error) {
+    return error.message;
+  }
+
+  return 'Something went wrong.';
+};
+
 export const useContactMessages = () => {
   const [messages, setMessages] = useState<ContactMessage[]>([]);
   const [loading, setLoading] = useState(true);
@@ -16,8 +24,8 @@ export const useContactMessages = () => {
       
       setMessages(data || []);
       setError(null);
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err) {
+      setError(getErrorMessage(err));
     } finally {
       setLoading(false);
     }
@@ -37,8 +45,8 @@ export const useContactMessages = () => {
           msg.id === messageId ? { ...msg, is_read: true } : msg
         )
       );
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err) {
+      setError(getErrorMessage(err));
     }
   };
 
@@ -48,8 +56,8 @@ export const useContactMessages = () => {
       if (error) throw error;
       
       setMessages(prev => prev.filter(msg => msg.id !== messageId));
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err) {
+      setError(getErrorMessage(err));
     }
   };
 
