@@ -4,29 +4,29 @@ import { motion } from "framer-motion";
 import { Download } from "lucide-react";
 
 const PrintableResume = () => {
-  const handleDownload = () => {
-    // Create a link element
+  const handleDownload = async () => {
+    const resumePath = `${import.meta.env.BASE_URL}resume.pdf`;
+    const resumeUrl = new URL(resumePath, window.location.href).toString();
+
+    const res = await fetch(resumeUrl);
+    if (!res.ok) throw new Error("Failed to download resume");
+
+    const blob = await res.blob();
+    const objectUrl = URL.createObjectURL(blob);
+
     const link = document.createElement("a");
-    
-    // Set the href to the resume PDF in the public folder
-    link.href = "/resume.pdf";
-    
-    // Set the download attribute to suggest a filename
-    link.download = "uday-g-resume.pdf";
-    
-    // Append the link to the document
+    link.href = objectUrl;
+    link.download = "resume.pdf";
     document.body.appendChild(link);
-    
-    // Trigger the click event
     link.click();
-    
-    // Remove the link from the document
-    document.body.removeChild(link);
+    link.remove();
+    URL.revokeObjectURL(objectUrl);
   };
 
   return (
     <div className="flex flex-col items-center">
       <motion.button
+        type="button"
         onClick={handleDownload}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
